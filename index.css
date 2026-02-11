@@ -1,0 +1,24 @@
+.index-bullets
+{
+    width:25%;
+    display:inline-block;
+    vertical-align:top;
+    padding:3px;
+    margin:3px;
+    border:1px dotted gray;
+}
+
+@media (max-width:720px) {
+    #intro h1 { font-size: 0.8rem; display:inline; }
+    #intro h4 { font-size: 0.8rem; display:inline;}
+    
+    .index-bullets
+    {
+        width: 100% !important;
+    }
+    
+    #index-img
+    {
+        max-width:100%;
+    }
+}

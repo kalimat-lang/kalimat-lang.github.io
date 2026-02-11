@@ -1,0 +1,291 @@
+.mobile-only { display:none; }
+.desktop-only { display:block; }
+
+@media (max-width:768px)
+{
+  .mobile-only { display:block; }
+  .desktop-only { display:none !important; }
+}
+
+/* Top toolbar */
+.topbar{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:12px;
+  background:transparent;
+  flex-wrap:wrap;
+}
+
+/* Shared item look so elements read as a coherent toolbar */
+.topbar .item{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  padding:10px 14px;
+  background:rgba(255,255,255,0.06);
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.06);
+  text-decoration:none;
+  color:inherit;
+  min-height:70px;          /* unified height for visual consistency */
+  border-bottom:2px dotted;
+}
+
+/* Slightly darker/lighter background for the first logo (official mascot) */
+.topbar .item.logo.colored{
+  background:linear-gradient(180deg,#f0f8ff,#e6f0f5);
+  box-shadow:0 6px 14px rgba(0,0,0,0.07);
+  padding-left:22px;   /* extra horizontal breathing room */
+  padding-right:22px;
+  padding-top:10px;    /* keep same vertical padding */
+  padding-bottom:10px;
+}
+
+/* Make logo items stack vertically */
+.topbar .item.logo{
+  flex-direction:column;
+  padding:10px;
+  gap:8px;
+  min-width:120px;
+  text-align:center;
+}
+
+/* Logo image sizing (keeps height consistent, width auto) */
+.topbar .item.logo img{
+  display:block;
+  height:56px;
+  width:auto;
+}
+
+/* Ensure SVGs fit fully in their item (prevents cropping) */
+.topbar .item.logo img[alt="youtube logo"],
+.topbar .item.logo img[src$=".svg"] {
+  width:72px;       /* visible width for svg logos */
+  height:48px;      /* match other logo heights */
+  object-fit:contain;
+  display:block;
+}
+
+/* Titles under logos */
+.topbar .title{
+  font-weight:700;
+  font-size:0.95rem;
+  line-height:1;
+  color:#0b2540;
+}
+
+/* Action group (download) keeps compact vertical layout by default */
+.topbar .item.action{
+  flex-direction:row;       /* place button and count side-by-side */
+  align-items:center;
+  gap:10px;
+  min-width:170px;
+}
+
+/* Download button: prominent but sized to match item height */
+.download-button{
+  display:inline-flex;
+  flex-direction:row;       /* single row: icon + label + subtitle */
+  align-items:center;
+  gap:12px;
+  padding:8px 14px;
+  border-radius:14px;
+  background:linear-gradient(180deg,#2fc82f,#26a626);
+  color:#062b00;
+  font-weight:800;
+  text-decoration:none;
+  box-shadow:0 8px 18px rgba(38,166,38,0.16);
+  min-width:140px;
+  line-height:1;
+}
+
+/* small icon inside the button */
+.download-button .icon{ font-size:1.2rem; line-height:1; }
+
+/* button main label and subtitle sizing */
+.db-main{ font-size:1rem; display:flex; gap:8px; align-items:center; }
+.db-sub{ font-size:0.75rem; font-weight:700; background: rgba(255,255,255,0.12); padding:3px 8px; border-radius:999px; color:#083600; }
+
+/* small count text beside the button */
+.count{ font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; font-size:0.9rem; color:#133; }
+
+/* Contact item: keep image inside item */
+.topbar .item.contact img{ height:36px; width:auto; display:block; }
+
+/* Page container: using logical properties for RTL friendliness */
+.page{
+  display:flex;
+  gap:28px;
+  align-items:flex-start;
+  padding:24px;
+  box-sizing:border-box;
+  direction: rtl; /* page-wide RTL */
+}
+
+/* Main content pane */
+.content{
+  flex:1 1 auto;
+  max-width:1200px;
+}
+
+/* Hero / intro content */
+.content h1 { font-size:1.3rem; margin:0 0 12px 0; }
+.content h4 { font-size:1.05rem; margin:0 0 12px 0; }
+.content p, .content ul { margin:0 0 18px 0; line-height:1.6; font-size:0.9rem}
+.hero-screenshot{
+  width:100%;
+  max-width:920px;
+  height:auto;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  display:block;
+  font-size:1.1rem;
+}
+
+/* Side navigation (left column visually despite RTL; we'll align it left) */
+.side-nav{
+  width:180px;
+  flex:0 0 180px;
+  position:sticky;
+  top:18px;
+  align-self:flex-start;
+  height:calc(100vh - 36px);
+  overflow:auto;
+  background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01));
+  border-radius:12px;
+  padding:14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.04);
+}
+
+/* Inner nav content */
+.side-nav h3{
+  margin:4px 0 12px 0;
+  font-size:1.05rem;
+  font-weight:700;
+  text-align:center;
+}
+.side-nav nav{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.side-nav a{
+  display:block;
+  padding:10px 12px;
+  border-radius:8px;
+  text-decoration:none;
+  color:inherit;
+  background:transparent;
+  transition:background .12s, transform .08s;
+  text-align:right; /* align link text to the right for RTL */
+}
+.side-nav a:hover{
+  background:rgba(0,0,0,0.04);
+  transform:translateX(-4px); /* subtle slide left on hover (RTL aware) */
+}
+.side-nav a.active{
+  background:linear-gradient(90deg, rgba(47,200,47,0.12), rgba(38,166,38,0.06));
+  font-weight:700;
+}
+
+
+
+/* Mobile layout */
+
+/* top toolbar will now be part of the <aside> */
+@media (max-width:768px)
+{
+
+  .mobile-actions{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    margin-bottom:8px;
+  }
+
+  .mobile-actions a{
+    padding:8px 14px;
+    border-radius:999px;
+    background:rgba(0,0,0,0.05);
+    text-decoration:none;
+    white-space:nowrap;
+    font-size:0.9rem;
+  }
+
+}
+
+@media (max-width: 768px){
+
+  .page{
+    flex-direction:column;
+    gap:12px;
+    padding:12px;
+  }
+
+  .content{
+    width:100%;
+    max-width:none;
+  }
+}
+
+@media (max-width: 768px){
+  .content{
+    flex:0 0 auto;
+  }
+}
+@media (max-width: 768px){
+
+  .side-nav{
+    position:sticky;
+    top:0;
+    z-index:1000;        /* keep it above content */
+    background:white;    /* ensure content isn't visible through it */
+    box-shadow:0 4px 12px rgba(0,0,0,0.06);
+  }
+
+}
+@media (max-width: 768px){
+
+  .side-nav{
+    width:100%;
+    flex:0 0 100%;
+    position:sticky;
+    top:0;
+    height:auto;
+    max-height:none;
+    border-radius:0;
+    padding:10px 8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+  }
+
+  .side-nav h3{
+    display:none; /* optional: hide title to save space */
+  }
+
+  .side-nav nav{
+    flex-direction:row;
+    gap:8px;
+    align-items:center;
+  }
+
+  .side-nav a{
+    display:inline-block;
+    text-align:center;
+    padding:8px 14px;
+    font-size:0.95rem;
+    white-space:nowrap;
+  }
+
+  .side-nav a:hover{
+    transform:none; /* disable sideways slide on mobile */
+  }
+}
+ /* -- end left nav media query */
+
+
+
+
+
